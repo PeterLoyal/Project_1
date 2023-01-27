@@ -20,7 +20,7 @@ class Game {
         this.clear();
         this.player.newPosition();
         this.player.drawSnake();
-
+        this.checkGameOver();
     }
 
     stop(){
@@ -31,5 +31,14 @@ class Game {
         this.ctx.clearRect(0, 0, this.width, this.height);
     }
 
+    checkGameOver() {
+        const crashed = this.ctx.some((limits) => {
+            return this.player.crashWith(limits);
+        });
+
+        if(crashed) {
+            this.stop();
+        }
+    }
 
 }
