@@ -8,40 +8,54 @@ class Component{
         this.h = h;
         this.ctx = ctx;
         this.image = new Image();
-        
+        this.movementX = 0;
+        this.movementY = 0;
+        this.currentPosition = [0, 0];
+        this.body = [];
     }
 
     drawSnake() {
-        this.image.src = '/docs/assets/crab.png'
+        this.image.src = '/docs/assets/head.jpeg'
         ctx.drawImage(this.image, this.x, this.y, this.w, this.h);
         
     }
 
     newPosition() {
-        this.x;
-        this.y;
+        this.x += this.movementX;
+        this.y += this.movementY;
     }
 
-    top() {
-        return this.y;
+    // Methods for the boundaries
+        left() {
+            return player.x - player.w;
+        }
+
+        right() {
+            return player.x + player.w;
+        }
+
+
+        top() {
+            return player.y - player.h;
+        }
+
+        down() {
+            return player.y + player.h;
+        }
+
+    // boudaries
+    crashWith() {
+        return (
+        player.y < 0 || 
+        player.y > canvas.height || 
+        player.x < 0 || 
+        player.x > canvas.width
+        );
     }
 
-    bottom() {
-        return this.y + this.h;
-    }
 
-    left() {
-        return this.x;
-    }
+    grabFood(){
 
-    right() {
-        return this.x;
-    }
-
-   
-    crashWith(limits) {
-        return !(
-            this.top() < 0 || this.left() < 0 || this.bottom() > this.height || this.right().x > this.width
-        )    
     }
 }
+

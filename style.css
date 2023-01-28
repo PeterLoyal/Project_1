@@ -1,0 +1,22 @@
+body {
+    background-image: url(/docs/assets/coral.png);
+    background-repeat: no-repeat;
+    font-family: 'Caveat', cursive;
+}
+
+#start{
+    width: 20vw;
+    height: 10vh;
+    font-size: 25px;
+    font-family: 'Caveat', cursive;
+    font-style: bold;
+    background-color: rgb(71, 117, 160);
+    color: aliceblue;
+    position: absolute;
+    top:50%;
+    letter-spacing: 10px;   
+    border:none;
+    border-radius:10px;
+    box-shadow: 0px 0px 2px 2px rgb(101, 98, 126);
+
+}

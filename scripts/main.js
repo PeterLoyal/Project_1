@@ -12,20 +12,31 @@ startButton.onclick = function () {
     const game = new Game(ctx, canvas.width, canvas.height, player);
     game.start();
 } 
+
+
 document.addEventListener('keydown', (e) => {
-    switch (e.code) {
-      case 'ArrowUp':
-        player.y -= 50;
-        break;
-      case 'ArrowDown':
-        player.y += 50;
-        break;
-      case 'ArrowLeft':
-        player.x -= 50;
-        break;
-      case 'ArrowRight':
-        player.x += 50;
-        break;
-    }
-  });
+
+  switch (e.code) {
+    case 'ArrowUp':
+      player.movementX = 0;
+      player.movementY -= 2;
+      break;
+    case 'ArrowDown':
+      player.movementX = 0;
+      player.movementY += 2;
+      break;
+    case 'ArrowLeft':
+      player.movementX -= 2;
+      player.movementY = 0;
+      break;
+    case 'ArrowRight':
+      player.movementX += 2;
+      player.movementY = 0;
+      break;
+    case 'ArrowUp' + 'ArrowUp':
+     player.movementX = 0;
+     player.movementY = 0;
+     break;
+  }
+});
 

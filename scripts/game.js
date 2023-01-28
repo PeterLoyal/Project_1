@@ -32,13 +32,9 @@ class Game {
     }
 
     checkGameOver() {
-        const crashed = this.ctx.some((limits) => {
-            return this.player.crashWith(limits);
-        });
-
-        if(crashed) {
-            this.stop();
-        }
+        if(this.crashWith()) {
+            return this.stop();
+        } 
     }
-
+ 
 }
