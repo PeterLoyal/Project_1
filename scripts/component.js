@@ -12,12 +12,21 @@ class Component{
         this.movementY = 0;
         this.currentPosition = [0, 0];
         this.body = [];
+        this.trail = 15;
+
     }
 
     drawSnake() {
         this.image.src = '/docs/assets/head.jpeg'
         ctx.drawImage(this.image, this.x, this.y, this.w, this.h);
-        
+    }
+
+    drawBody() {
+        this.ctx.strokeStyle = "green";
+        this.ctx.lineWidth = 10;
+        for(let i = 0; i < this.body.length; i++){
+            this.ctx.strokeRect(this.body[i].x, this.body[i].y, 25, 25);
+        }
     }
 
     newPosition() {
@@ -25,37 +34,40 @@ class Component{
         this.y += this.movementY;
     }
 
+    updateBody() {
+        this.body.push({x: this.x, y: this.y})
+        if(this.body.length > this.trail){
+            this.body.shift()
+        }
+    }
+    
+
     // Methods for the boundaries
         left() {
-            return player.x - player.w;
+            return this.x;
         }
 
         right() {
-            return player.x + player.w;
+            return this.x + this.w;
         }
 
 
         top() {
-            return player.y - player.h;
+            return this.y;
         }
 
         down() {
-            return player.y + player.h;
+            return this.y + this.h;
         }
 
     // boudaries
     crashWith() {
         return (
-        player.y < 0 || 
-        player.y > canvas.height || 
-        player.x < 0 || 
-        player.x > canvas.width
+        this.top() < 0 || 
+        this.down() > canvas.height || 
+        this.left() < 0 || 
+        this.right() > canvas.width
         );
-    }
-
-
-    grabFood(){
-
-    }
+    }    
 }
 
