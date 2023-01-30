@@ -6,11 +6,16 @@ const ctx = canvas.getContext('2d');
 
 const startButton = document.getElementById('start');
 
-const player = new Component(canvas.width / 2, canvas.height / 2, 50, 50, ctx);
+const player = new Component(canvas.width / 2, canvas.height / 2, 25, 25, ctx);
+
+
+let game = null; 
 
 startButton.onclick = function () {
-    const game = new Game(ctx, canvas.width, canvas.height, player);
+  if(!game) {
+    game = new Game(ctx, canvas.width, canvas.height, player);
     game.start();
+  }
 } 
 
 
@@ -33,7 +38,6 @@ document.addEventListener('keydown', (e) => {
       player.movementX = 2;
       player.movementY = 0;
       break;
-    
   }
 });
 
