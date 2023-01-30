@@ -1,13 +1,16 @@
 #canvas {
     background-image: url(/docs/assets/under.jpg);
     background-repeat: no-repeat;
-
 }
 
 .flex {
     display: flex;
     flex-direction: row;
     justify-content: center;
+}
+
+h1 {
+    font-size: 60px;
 }
 
 #start{

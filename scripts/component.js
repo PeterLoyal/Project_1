@@ -12,7 +12,7 @@ class Component{
         this.movementY = 0;
         this.direction = '';
         this.body = [];
-        this.trail = 15;
+        this.trail = 10;
 
     }
 
@@ -23,7 +23,7 @@ class Component{
 
     drawBody() {
         this.ctx.strokeStyle = "green";
-        this.ctx.lineWidth = 10;
+        this.ctx.lineWidth = 5;
         for(let i = 0; i < this.body.length; i++){
             this.ctx.strokeRect(this.body[i].x, this.body[i].y, 25, 25);
         }
@@ -68,6 +68,15 @@ class Component{
         this.left() < 0 || 
         this.right() > canvas.width
         );
-    }    
+    }
+    crashWithHimself(){
+        return (
+            this.top() > this.down()  || 
+            this.down() < this.top()  || 
+            this.left() > this.right()|| 
+            this.right() < this.left()
+            );
+        
+    }
 }
 

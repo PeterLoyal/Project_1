@@ -35,8 +35,8 @@ class Game {
     }
 
     generateFood(){
-        this.food.x = Math.floor(Math.random() * canvas.width - this.food.w)
-        this.food.y = Math.floor(Math.random() * canvas.height - this.food.h)
+        this.food.x = Math.floor(Math.random() * (canvas.width - this.food.w))
+        this.food.y = Math.floor(Math.random() * (canvas.height - this.food.h))
     }
 
     drawFood() {   
@@ -49,14 +49,14 @@ class Game {
     }
 
     checkGameOver() {
-        if(this.player.crashWith()) {
+        if(this.player.crashWith() || this.player.crashWithHimself()) {
             this.stop();
         } 
     }
 
     grabFood() {
         const collided  =  !(
-            this.player.down() < this.food.y||
+            this.player.down() < this.food.y ||
             this.player.top() > this.food.y + this.food.h ||
             this.player.right() < this.food.x ||
             this.player.left() > this.food.x + this.food.w
@@ -64,7 +64,7 @@ class Game {
 
         if(collided) {
             this.generateFood();
-            this.player.trail += 25;
+            this.player.trail += 10;
         }
     }
 
