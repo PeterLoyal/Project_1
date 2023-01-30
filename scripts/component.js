@@ -10,7 +10,7 @@ class Component{
         this.image = new Image();
         this.movementX = 0;
         this.movementY = 0;
-        this.currentPosition = [0, 0];
+        this.direction = '';
         this.body = [];
         this.trail = 15;
 

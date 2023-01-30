@@ -54,7 +54,7 @@ class Game {
         } 
     }
 
-    grabFood(){
+    grabFood() {
         const collided  =  !(
             this.player.down() < this.food.y||
             this.player.top() > this.food.y + this.food.h ||
@@ -62,7 +62,7 @@ class Game {
             this.player.left() > this.food.x + this.food.w
             );
 
-        if(collided){
+        if(collided) {
             this.generateFood();
             this.player.trail += 25;
         }
