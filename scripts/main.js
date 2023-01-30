@@ -33,10 +33,7 @@ document.addEventListener('keydown', (e) => {
       player.movementX = 2;
       player.movementY = 0;
       break;
-    case 'ArrowUp' + 'ArrowUp':
-     player.movementX = 0;
-     player.movementY = 0;
-     break;
+    
   }
 });
 
