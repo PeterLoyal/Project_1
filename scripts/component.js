@@ -12,19 +12,18 @@ class Component{
         this.movementY = 0;
         this.direction = '';
         this.body = [];
-        this.trail = 10;
-
+        this.trail = 11;
     }
 
     drawSnake() {
-        this.image.src = '/docs/assets/head.jpeg'
+        this.image.src = '/docs/assets/head.jpeg';
         ctx.drawImage(this.image, this.x, this.y, this.w, this.h);
     }
 
     drawBody() {
-        this.ctx.strokeStyle = "green";
-        this.ctx.lineWidth = 5;
-        for(let i = 0; i < this.body.length; i++){
+        this.ctx.strokeStyle = "rgb(62, 202, 158)";
+        this.ctx.lineWidth = 3;
+        for(let i = 0; i < this.body.length - 1; i++) {
             this.ctx.strokeRect(this.body[i].x, this.body[i].y, 25, 25);
         }
     }
@@ -41,25 +40,26 @@ class Component{
         }
     }
     
-
+    
+    
     // Methods for the boundaries
-        left() {
-            return this.x;
-        }
-
-        right() {
-            return this.x + this.w;
-        }
-
-
-        top() {
-            return this.y;
-        }
-
-        down() {
-            return this.y + this.h;
-        }
-
+    left() {
+        return this.x;
+    }
+    
+    right() {
+        return this.x + this.w;
+    }
+    
+    
+    top() {
+        return this.y;
+    }
+    
+    down() {
+        return this.y + this.h;
+    }
+    
     // boudaries
     crashWith() {
         return (
@@ -69,14 +69,14 @@ class Component{
         this.right() > canvas.width
         );
     }
-    crashWithHimself(){
-        return (
-            this.top() > this.down()  || 
-            this.down() < this.top()  || 
-            this.left() > this.right()|| 
-            this.right() < this.left()
-            );
-        
-    }
+
+    crashWithHimself(segment) {
+        return !(
+        this.down() < segment.y ||
+            this.top() > segment.y + 25 ||
+            this.right() < segment.x ||
+            this.left() > segment.x + 25
+        )
+    } 
 }
 

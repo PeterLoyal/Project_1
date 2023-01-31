@@ -5,6 +5,8 @@ const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 
 const startButton = document.getElementById('start');
+const restartButton = document.getElementById('restart');
+restartButton.classList.add('hidden');
 
 const player = new Component(canvas.width / 2, canvas.height / 2, 25, 25, ctx);
 
@@ -16,7 +18,15 @@ startButton.onclick = function () {
     game = new Game(ctx, canvas.width, canvas.height, player);
     game.start();
   }
+  startButton.classList.add('hidden');
 } 
+
+restartButton.onclick = function () {
+  if(game.gameOver()) {
+    restartButton.classList.removee('hidden');
+    
+    }
+}
 
 
 document.addEventListener('keydown', (e) => {
