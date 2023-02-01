@@ -18,13 +18,13 @@ class Game {
     start(){
         this.intervalId = setInterval(this.update, 1000 / 60)
         this.generateFood();
-        this.generateJunk()
+        this.generateJunk();
     }
 
     update = () => {    
         this.frames++;
         this.clear();
-        console.log(this.result)
+        /* console.log(this.result) */
         this.player.newPosition();
         this.player.drawBody();
         this.player.drawSnake();
@@ -77,8 +77,7 @@ class Game {
             this.ctx.fillStyle = "red";
             this.ctx.fillText(`GAME OVER`, (canvas.width / 2) - 100, canvas.height/ 2 );
             canvas.style = 3;
-            startButton.textContent = "Restart";
-            
+            restartButton.classList.remove('hidden');
 
            /*  this.ctx.fillText(`Your final score is ${this.score}`, 47, 340) */
             /* themeMusic.pause()
@@ -136,8 +135,6 @@ class Game {
             this.player.right() < this.junk.x ||
             this.player.left() > this.junk.x + this.junk.w
             );
-            console.log(collided);
-
         if(collided) {
             this.generateJunk();
             this.player.body.splice(0, 10);
@@ -148,9 +145,18 @@ class Game {
 
     getHighScore() {
         let score = document.getElementById('span');
+        let hight = document.getElementById('HighScore')
         let zzz = this.result
-            
-        score.innerHTML = `${zzz}`;
+        let highscore = localStorage.getItem("HighScore");
+        if(highscore !== null){
+            if (zzz > highscore) {
+                localStorage.setItem("HighScore", zzz);      
+            }
         
-    }   
+        }
+        else{
+            localStorage.setItem("HighScore", zzz);
+        }
+        /* hight.innerHTML  */
+    }
 }

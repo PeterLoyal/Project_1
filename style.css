@@ -44,7 +44,12 @@ h2 {
     font-weight: 800;
 }
 
-#start{
+.butt-flex {
+    display: flex;
+    
+}
+
+.buttons{
     width: 10vw;
     height: 10vh;
     font-size: 40px;

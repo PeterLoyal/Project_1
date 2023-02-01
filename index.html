@@ -10,13 +10,15 @@
 <body>
     <div class="flex">
         <div>
-            <p id="score">Score is: <span id="span">0</span></p>       
+            <p id="score">Score is: <span id="span">0</span> <span id="HighScore">High Score is:</span></p>       
             <canvas id="canvas"  width="700px" height="700px"></canvas>
         </div>
         <div class="side-bar">
             <h1>Sea Snake</h1>
-            <button id="start">Start</button>
-            <button id="restart">Restart</button>
+        <div class="butt-flex">
+            <button id="start" class="buttons">Start</button>
+            <button id="restart" class="buttons">Restart</button>
+        </div>
             <h2>Feed the hungry snake</h2>
             <p class="text">Pick up the food <img class="shrimpImg" src="docs/assets/Shrimp.png" alt=""> to grow, and avoid the trash <img class="trashImg" src="/docs/assets/bottleWater.png" alt="bottle">.</p>
             <p class="text"><b>Be careful</b>: don't touch the margins nor yourself!</p>

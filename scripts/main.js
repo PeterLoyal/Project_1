@@ -14,18 +14,32 @@ const player = new Component(canvas.width / 2, canvas.height / 2, 25, 25, ctx);
 let game = null; 
 
 startButton.onclick = function () {
-  if(!game) {
+  console.log(game, '1º')
+
     game = new Game(ctx, canvas.width, canvas.height, player);
     game.start();
-  }
+    console.log(game, '2º')
+  
   startButton.classList.add('hidden');
 } 
 
 restartButton.onclick = function () {
-  if(game.gameOver()) {
-    restartButton.classList.removee('hidden');
-    
-    }
+  startButton.classList.remove('hidden');
+  restartButton.classList.add('hidden');
+  game.clear();
+  game.intervalId = null;
+        game.frames = 0;
+        game.result = 10;
+        game.food = {x: 0, y: 0, w: 25, h:25};
+        game.junk = {x: 0, y: 0, w: 25, h: 25};
+player.x = canvas.width / 2
+player.y = canvas.height / 2
+player.movementX = 0;
+      player.movementY = 0;
+
+ /*  game.start();
+ */
+  
 }
 
 
