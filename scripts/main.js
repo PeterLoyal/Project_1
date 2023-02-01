@@ -12,8 +12,10 @@ restartButton.classList.add('hidden');
 const player = new Component(canvas.width / 2, canvas.height / 2, 25, 25, ctx);
 
 const soundEat = new Audio('/docs/assets/swallow.mp3');
-
 const soundWater = new Audio('/docs/assets/underwater.mp3');
+const soundHurt = new Audio('/docs/assets/hurt.mp3');
+const soundGameOver = new Audio('/docs/assets/drowning.mp3');
+soundGameOver.volume = 0.1;
 
 let game = null; 
 
@@ -41,7 +43,7 @@ restartButton.onclick = function () {
   player.direction = '';
   player.trail = 11;
   game.getHighScore();
-
+  soundGameOver.pause();
 
  /*  game.start();
  */

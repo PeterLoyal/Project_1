@@ -117,7 +117,8 @@ class Game {
             restartButton.classList.remove('hidden');
 
             soundWater.pause();
-            
+            soundGameOver.play();
+
 
 
             /* themeMusic.pause()
@@ -180,6 +181,7 @@ class Game {
             this.generateJunk();
             this.player.body.splice(0, 30);
             this.player.trail -= 30;
+            soundHurt.play();
             if(this.result >= 30){
                 this.result -= 30
             }
