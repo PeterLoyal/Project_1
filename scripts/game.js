@@ -157,6 +157,8 @@ class Game {
         else{
             localStorage.setItem("HighScore", zzz);
         }
-        /* hight.innerHTML  */
+        
+        hight.innerHTML = `High Score is: ${highscore}`
+        score.innerHTML = `Score is: ${zzz}`
     }
 }
