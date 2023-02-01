@@ -54,7 +54,7 @@ h2 {
     height: 10vh;
     font-size: 40px;
     text-transform: uppercase;
-    background-color: rgb(62, 202, 158);
+    background-color: #24E087;
     color: white;
     border: none;
     border-radius: 20px;
@@ -77,8 +77,8 @@ h2 {
     margin: 8px;
 }
 .trashImg{
-    width: 40px;
-    margin: 6px;
+    width: 20px;
+    margin: 10px;
 }
 .PLeft{
     bottom: 10px;
@@ -112,9 +112,14 @@ h2 {
     font-family: 'Amatic SC', cursive;
     font-family: 'Inconsolata', monospace;
 }
-#score{
+
+.score{
     color: rgb(255, 255, 255);
-    
-    
+    margin-bottom: 2px;
+    font-size: 25px;
 }
 
+.score-flex {
+    display: flex;
+    justify-content: space-around;
+}

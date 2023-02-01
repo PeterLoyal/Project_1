@@ -16,15 +16,15 @@ class Component{
     }
 
     drawSnake() {
-        this.image.src = '/docs/assets/head.jpeg';
+        this.image.src = '/docs/assets/snake.png';
         ctx.drawImage(this.image, this.x, this.y, this.w, this.h);
     }
 
     drawBody() {
-        this.ctx.strokeStyle = "rgb(62, 202, 158)";
-        this.ctx.lineWidth = 3;
+        this.ctx.fillStyle = "#24E087";
+        /* this.ctx.lineWidth = 3; */
         for(let i = 0; i < this.body.length - 1; i++) {
-            this.ctx.strokeRect(this.body[i].x, this.body[i].y, 25, 25);
+            this.ctx.fillRect(this.body[i].x, this.body[i].y, 25, 25);
         }
     }
 
