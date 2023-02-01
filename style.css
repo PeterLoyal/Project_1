@@ -4,7 +4,7 @@
 
 
 #canvas {
-    background-color: #36454F;
+    background-color: #363047;
     border: 5px solid #28282B;
 }
 
@@ -37,11 +37,6 @@ h1 {
     font-family: 'Amatic SC', cursive;
     font-size: 100px;
     margin-bottom: 10px;
-}
-
-h2 {
-    font-size: 40px;
-    font-weight: 800;
 }
 
 .butt-flex {

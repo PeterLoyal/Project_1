@@ -19,11 +19,13 @@ class Game {
         this.intervalId = setInterval(this.update, 1000 / 60)
         this.generateFood();
         this.generateJunk();
+        soundWater.play();
     }
 
     update = () => {    
         this.frames++;
         this.clear();
+        console.log(this.player.trail);
         /* console.log(this.result) */
         this.player.newPosition();
         this.player.drawBody();
@@ -55,22 +57,32 @@ class Game {
     }
 
     generateJunk () {
-        this.junk.x = Math.floor(Math.random() * (canvas.width - this.junk.w));
-        this.junk.y = Math.floor(Math.random() * (canvas.height - this.junk.h));
+        this.junk.x = Math.floor(Math.random() * (canvas.width - this.junk.w) + this.junk.w) 
+        this.junk.y = Math.floor(Math.random() * (canvas.height - this.junk.h) + this.junk.h)
         
-        this.junk.w = Math.floor(Math.random() * 100 - 40) + 40;
+        this.junk.w = Math.floor(Math.random() * (50 - 20) + 20) ;
         this.junk.h = this.junk.w * 2;
 
-        for (let i = 0; i < this.player.body.length; i++) {
-            if (this.junk.x === this.player.body[i].x && this.junk.y === this.player.body[i].y) {
-                this.junk.x = Math.floor(Math.random() * (canvas.width - this.junk.w));
-                this.junk.y = Math.floor(Math.random() * (canvas.height - this.junk.h));
+/*         for (let i = 0; i < this.player.body.length; i++) {
+            if (this.junk.x === this.player.body[i].x || this.junk.y === this.player.body[i].y) {
+                this.junk.x = Math.floor(Math.random() * 700- this.junk.w)  
+                this.junk.y = Math.floor(Math.random() * 700 - this.junk.h) 
             }
-        }
+        } */
+            if (
+                this.player.top() > this.junk.y + this.junk.h ||
+                this.player.down() <  this.junk.y ||
+                this.player.left() > this.junk.x + this.junk.w ||
+                this.player.right() <  this.junk.x
+                ) {
+                this.junk.x = Math.floor(Math.random() * (canvas.width- this.junk.w) + this.junk.w)  
+                this.junk.y = Math.floor(Math.random() * (canvas.height - this.junk.h) + this.junk.h) 
+            } 
+        
 
-        if (this.junk.x === this.food.x && this.junk.y === this.food.y) {
-            this.junk.x = Math.floor(Math.random() * (canvas.width - this.junk.w));
-            this.junk.y = Math.floor(Math.random() * (canvas.height - this.junk.h));
+        if (this.junk.x === this.food.x || this.junk.y === this.food.y) {
+            this.junk.x = Math.floor(Math.random() * (canvas.width- this.junk.w) + this.junk.w) 
+            this.junk.y = Math.floor(Math.random() * (canvas.height - this.junk.h) + this.junk.h) 
        }
     }
 
@@ -82,7 +94,7 @@ class Game {
     }
 
     drawJunk() {
-        /* let randomTime = Math.floor(Math.random() * (this.frames % 3000 === 0) - (this.frames % 120 === 0)) + (this.frames % 120 === 0);
+        /* let randomTime = Math.floor(Math.random() * (this.frames % 3000) - (this.frames % 120 === 0)) + (this.frames % 120 === 0);
 
         if(this.frames % randomTime === 0) { */
         this.image.src = '/docs/assets/beer.png';
@@ -100,9 +112,12 @@ class Game {
             
             this.ctx.font = "50px 'Amatic SC'";
             this.ctx.fillStyle = "black";
-            this.ctx.fillText(`Your score is: ${this.result}`,  (canvas.width / 2) - 80, (canvas.height/ 2) + 130);
+            this.ctx.fillText(`Your score is: ${this.result}`,  (canvas.width / 2) - 70, (canvas.height/ 2) + 130);
 
             restartButton.classList.remove('hidden');
+
+            soundWater.pause();
+            
 
 
             /* themeMusic.pause()
@@ -150,6 +165,7 @@ class Game {
             this.getHighScore();
             this.player.trail += 10;
             this.result += 10;
+            soundEat.play();
         }
     }
 
@@ -162,8 +178,13 @@ class Game {
             );
         if(collided) {
             this.generateJunk();
-            this.player.body.splice(0, 10);
-            this.player.trail -= 10;
+            this.player.body.splice(0, 30);
+            this.player.trail -= 30;
+            if(this.result >= 30){
+                this.result -= 30
+            }
+        }else if(this.frames % 250 === 0){ //intervalo de tempo em que a lata foge
+            this.generateJunk();
         }
 
     }

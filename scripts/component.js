@@ -16,7 +16,7 @@ class Component{
     }
 
     drawSnake() {
-        this.image.src = '/docs/assets/snake.png';
+        /* this.image.src = '/docs/assets/snake.png'; */
         ctx.drawImage(this.image, this.x, this.y, this.w, this.h);
     }
 
