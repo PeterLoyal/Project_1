@@ -20,6 +20,9 @@ class Game {
         this.generateFood();
         this.generateJunk();
         soundWater.play();
+        soundWater.loop = true;
+        player.image.src = '/docs/assets/snake.up.png'
+          player.ctx.drawImage(player.image, player.x, player.y, player.w, player.h);
     }
 
     update = () => {    
@@ -48,20 +51,20 @@ class Game {
         this.food.x = Math.floor(Math.random() * (canvas.width - this.food.w));
         this.food.y = Math.floor(Math.random() * (canvas.height - this.food.h));
 
-        for (let i = 0; i < this.player.body.length; i++) {
-            if (this.food.x === this.player.body[i].x && this.food.y === this.player.body[i].y) {
-                this.food.x = Math.floor(Math.random() * (canvas.width - this.food.w));
-                this.food.y = Math.floor(Math.random() * (canvas.height - this.food.h));
-            }
-        }
+        if (
+            this.player.crashWithItem(this.food)
+            ) {
+            this.generateFood()
+        } 
     }
 
     generateJunk () {
-        this.junk.x = Math.floor(Math.random() * (canvas.width - this.junk.w) + this.junk.w) 
-        this.junk.y = Math.floor(Math.random() * (canvas.height - this.junk.h) + this.junk.h)
         
-        this.junk.w = Math.floor(Math.random() * (50 - 20) + 20) ;
-        this.junk.h = this.junk.w * 2;
+        this.junk.w = Math.floor(Math.random() * (60 - 20) + 20) ;
+        this.junk.h = Math.floor(this.junk.w * 1.5);
+
+        this.junk.x = Math.floor(Math.random() * (canvas.width - this.junk.w) ) 
+        this.junk.y = Math.floor(Math.random() * (canvas.height - this.junk.h) )
 
 /*         for (let i = 0; i < this.player.body.length; i++) {
             if (this.junk.x === this.player.body[i].x || this.junk.y === this.player.body[i].y) {
@@ -69,21 +72,19 @@ class Game {
                 this.junk.y = Math.floor(Math.random() * 700 - this.junk.h) 
             }
         } */
+        
             if (
-                this.player.top() > this.junk.y + this.junk.h ||
-                this.player.down() <  this.junk.y ||
-                this.player.left() > this.junk.x + this.junk.w ||
-                this.player.right() <  this.junk.x
+                this.player.crashWithItem(this.junk)
                 ) {
-                this.junk.x = Math.floor(Math.random() * (canvas.width- this.junk.w) + this.junk.w)  
-                this.junk.y = Math.floor(Math.random() * (canvas.height - this.junk.h) + this.junk.h) 
+                    console.log("junk top")
+                this.generateJunk()
             } 
         
 
-        if (this.junk.x === this.food.x || this.junk.y === this.food.y) {
-            this.junk.x = Math.floor(Math.random() * (canvas.width- this.junk.w) + this.junk.w) 
-            this.junk.y = Math.floor(Math.random() * (canvas.height - this.junk.h) + this.junk.h) 
-       }
+     /*    if (this.junk.x === this.food.x || this.junk.y === this.food.y) {
+            this.junk.x = Math.floor(Math.random() * (canvas.width- this.junk.w)) 
+            this.junk.y = Math.floor(Math.random() * (canvas.height - this.junk.h)) 
+       } */
     }
 
     
@@ -97,7 +98,7 @@ class Game {
         /* let randomTime = Math.floor(Math.random() * (this.frames % 3000) - (this.frames % 120 === 0)) + (this.frames % 120 === 0);
 
         if(this.frames % randomTime === 0) { */
-        this.image.src = '/docs/assets/beer.png';
+        this.image.src = '/docs/assets/saco.png';
         this.ctx.drawImage(this.image, this.junk.x, this.junk.y, this.junk.w, this.junk.h);
     }
 
@@ -108,11 +109,11 @@ class Game {
     gameOver() {
             this.ctx.font =  "150px 'Amatic SC'";
             this.ctx.fillStyle = "red";
-            this.ctx.fillText(`GAME OVER`, (canvas.width / 2) - 200, canvas.height/ 2 + 50);
+            this.ctx.fillText(`GAME OVER`, (canvas.width / 2) - 200, canvas.height/ 2 + 40);
             
             this.ctx.font = "50px 'Amatic SC'";
-            this.ctx.fillStyle = "black";
-            this.ctx.fillText(`Your score is: ${this.result}`,  (canvas.width / 2) - 70, (canvas.height/ 2) + 130);
+            this.ctx.fillStyle = "white";
+            this.ctx.fillText(`Your score is: ${this.result}`,  (canvas.width / 2) - 80, (canvas.height/ 2) + 130);
 
             restartButton.classList.remove('hidden');
 

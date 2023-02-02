@@ -21,10 +21,13 @@ class Component{
     }
 
     drawBody() {
-        this.ctx.fillStyle = "#24E087";
-        /* this.ctx.lineWidth = 3; */
         for(let i = 0; i < this.body.length - 1; i++) {
-            this.ctx.fillRect(this.body[i].x, this.body[i].y, 25, 25);
+            this.ctx.beginPath();
+            this.ctx.arc(this.body[i].x + 25/2, this.body[i].y + 25/2, 11, 0, Math.PI * 2);
+            this.ctx.lineWidth = 10;
+            this.ctx.fillStyle = "#24E087";
+            this.ctx.fill();
+            this.ctx.closePath();
         }
     }
 
@@ -69,6 +72,19 @@ class Component{
         this.right() > canvas.width
         );
     }
+
+    crashWithItem(item) {
+        return this.body.some((segment => {
+            return !(
+                segment.y < item.y + item.h || 
+                segment.y + segment.h > item.y|| 
+                segment.x < item.x + item.w|| 
+                segment.x + segment.w > item.x
+                );
+        }  )) 
+    }
+
+
 
     crashWithHimself(segment) {
         return !(

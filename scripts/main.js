@@ -15,7 +15,7 @@ const soundEat = new Audio('/docs/assets/swallow.mp3');
 const soundWater = new Audio('/docs/assets/underwater.mp3');
 const soundHurt = new Audio('/docs/assets/hurt.mp3');
 const soundGameOver = new Audio('/docs/assets/drowning.mp3');
-soundGameOver.volume = 0.1;
+soundGameOver.volume = 0.2;
 
 let game = null; 
 
@@ -54,7 +54,6 @@ restartButton.onclick = function () {
 document.addEventListener('keydown', (e) => {
 
   switch (e.code) {
-
     case 'ArrowUp':
       if(player.direction !== 'down') {
       player.movementX = 0;
@@ -71,10 +70,9 @@ document.addEventListener('keydown', (e) => {
       player.movementX = 0;
       player.movementY = 5;
       player.direction = 'down';
-    }
-    player.image.src = '/docs/assets/snake.down.png'
-    player.ctx.drawImage(player.image, player.x, player.y, player.w, player.h);
-      
+      }
+      player.image.src = '/docs/assets/snake.down.png'
+      player.ctx.drawImage(player.image, player.x, player.y, player.w, player.h);
       break;
 
     case 'ArrowLeft':
@@ -86,14 +84,15 @@ document.addEventListener('keydown', (e) => {
       player.image.src = '/docs/assets/snake.left.png'
       player.ctx.drawImage(player.image, player.x, player.y, player.w, player.h);
       break;
+
     case 'ArrowRight':
       if(player.direction !== 'left') {
       player.movementX = 5;
       player.movementY = 0;
       player.direction = 'right';
-    }
-    player.image.src = '/docs/assets/snake.right.png'
-    player.ctx.drawImage(player.image, player.x, player.y, player.w, player.h);
+      }
+      player.image.src = '/docs/assets/snake.right.png'
+      player.ctx.drawImage(player.image, player.x, player.y, player.w, player.h);
       break;
   }
 });
