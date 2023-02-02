@@ -109,11 +109,11 @@ class Game {
     gameOver() {
             this.ctx.font =  "150px 'Amatic SC'";
             this.ctx.fillStyle = "red";
-            this.ctx.fillText(`GAME OVER`, (canvas.width / 2) - 200, canvas.height/ 2 + 40);
+            this.ctx.fillText(`GAME OVER`, (canvas.width / 2) - 210, canvas.height/ 2 + 15);
             
             this.ctx.font = "50px 'Amatic SC'";
             this.ctx.fillStyle = "white";
-            this.ctx.fillText(`Your score is: ${this.result}`,  (canvas.width / 2) - 80, (canvas.height/ 2) + 130);
+            this.ctx.fillText(`Your score is: ${this.result}`,  (canvas.width / 2) - 90, (canvas.height/ 2) + 130);
 
             restartButton.classList.remove('hidden');
 
