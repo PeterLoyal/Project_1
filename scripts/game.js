@@ -21,7 +21,7 @@ class Game {
         this.generateJunk();
         soundWater.play();
         soundWater.loop = true;
-        player.image.src = '/docs/assets/snake.up.png'
+        player.image.src = './docs/assets/snake.up.png'
           player.ctx.drawImage(player.image, player.x, player.y, player.w, player.h);
     }
 
@@ -90,7 +90,7 @@ class Game {
     
     
     drawFood() {   
-        this.image.src = '/docs/assets/Shrimp.png'; 
+        this.image.src = './docs/assets/Shrimp.png'; 
         this.ctx.drawImage(this.image, this.food.x, this.food.y, this.food.w, this.food.h);
     }
 
@@ -98,7 +98,7 @@ class Game {
         /* let randomTime = Math.floor(Math.random() * (this.frames % 3000) - (this.frames % 120 === 0)) + (this.frames % 120 === 0);
 
         if(this.frames % randomTime === 0) { */
-        this.image.src = '/docs/assets/saco.png';
+        this.image.src = './docs/assets/saco.png';
         this.ctx.drawImage(this.image, this.junk.x, this.junk.y, this.junk.w, this.junk.h);
     }
 
